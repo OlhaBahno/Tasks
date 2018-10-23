@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String[] args) {
         Converter c = new Converter();
-        String result = c.convertNumberToWord(709);
+        String result = c.convertNumberToWord(1_102_101);
         System.out.print(result);
     }
 }

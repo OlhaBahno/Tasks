@@ -1,6 +1,6 @@
 package task_digits;
 
-import java.util.*;
+import java.util.Map;
 
 public class Converter {
 
@@ -30,7 +30,7 @@ public class Converter {
 
         int result = divider/10;
         int pow = lengthOfNumber(result) - 1;
-        if (pow > dividers[dividers.length-1]){
+        if (pow >= dividers[dividers.length-1]){
             return (int)Math.pow(10,dividers[dividers.length-1]);
         }
         for(int i = 0; i<dividers.length-1;i++){
@@ -86,26 +86,29 @@ public class Converter {
             case 1_000:
                 switch (amount){
                     case 1:
-                        result = units.get(divider)+"а";
+                        result = "Одна" + " " + units.get(divider)+"а";
                         break;
-                    case 2: case 3: case 4:
-                        result = units.get(divider)+"и";
+                    case 2:
+                        result = "Две" + units.get(divider)+"и";
+                        break;
+                    case 3: case 4:
+                        result = uniqueNumbers.get(amount) + " " + units.get(divider)+"и";
                         break;
                     default:
-                        result = units.get(divider);
+                        result = recursiveFind(amount) + " " + units.get(divider);
                         break;
                 }
                 break;
             case 1_000_000:
                 switch (amount){
                     case 1:
-                        result = units.get(divider);
+                        result = uniqueNumbers.get(amount) + " " + units.get(divider);
                         break;
                     case 2: case 3: case 4:
-                        result = units.get(divider)+"а";
+                        result = uniqueNumbers.get(amount) + " " + units.get(divider)+"а";
                         break;
                     default:
-                        result = units.get(divider)+"ов";
+                        result = recursiveFind(amount) + " " + units.get(divider)+"ов";
                         break;
                 }
                 break;
@@ -125,11 +128,7 @@ public class Converter {
             return getWordEquivalent(number);
         }
 
-        if (divider == 100){
-            return getUnitsName(number/divider,divider) + " " + recursiveFind(number%divider);
-        }
-        return recursiveFind(number/divider) +" " + getUnitsName(number/divider,divider) + " " + recursiveFind(number%divider);
+        return getUnitsName(number/divider,divider) + " " + recursiveFind(number%divider);
     }
 
 }
-
