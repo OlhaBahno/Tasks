@@ -43,6 +43,9 @@ public class Converter {
 
     private String getWordEquivalent(int number) {
 
+        if(number == 0){
+            return " ";
+        }
         if (number > 0 && number < 20){
 
             if (number == 10){
@@ -61,6 +64,8 @@ public class Converter {
         else{
             return tens[number/10-1] +" "+uniqueNumbers.get(number%10);
         }
+
+
     }
 
     private String getUnitsName(int amount , int divider){
