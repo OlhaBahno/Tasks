@@ -1,10 +1,13 @@
 package task_digits;
 
+import CommonParse.Parse;
+
 public class Main {
 
     public static void main(String[] args) {
         Converter c = new Converter();
-        String result = c.convertNumberToWord(21008);
+        int yourDigit = (int)Parse.getParam("Digit");
+        String result = c.convertNumberToWord(yourDigit);
         System.out.print(result);
     }
 }
